@@ -220,3 +220,50 @@ To reset your data, delete the database file:
 rm ~/Library/Application\ Support/mtcli/mtcli.db  # macOS
 rm ~/.config/mtcli/mtcli.db                        # Linux
 ```
+
+## Development
+
+### Building
+
+```bash
+go build -o mtcli ./cmd/mtcli
+```
+
+### Running tests
+
+```bash
+go test ./...
+```
+
+### Project structure
+
+```
+mtcli/
+├── cmd/mtcli/          # CLI application entrypoint
+├── internal/
+│   ├── assets/         # Embedded word lists and quotes
+│   ├── charts/         # ASCII chart rendering
+│   ├── cli/            # CLI root command
+│   ├── commands/       # Subcommands (test, stats, history, show)
+│   ├── config/         # Configuration handling
+│   ├── input/          # Raw terminal input
+│   ├── metrics/        # WPM/accuracy calculations
+│   ├── storage/        # SQLite persistence
+│   ├── test/           # Typing session logic
+│   ├── text/           # Text generation
+│   └── ui/             # ANSI rendering
+├── lua/mtcli/          # Neovim plugin (Lua)
+│   ├── init.lua        # Plugin setup and entry point
+│   ├── ts.lua          # Tree-sitter function detection
+│   ├── normalize.lua   # Text normalization
+│   ├── session.lua     # Typing session logic
+│   ├── render.lua      # Extmark overlay rendering
+│   └── ui.lua          # Results display
+├── plugin/mtcli.lua    # Neovim autoload
+├── doc/mtcli.txt       # Neovim help file
+└── README.md
+```
+
+## License
+
+MIT
